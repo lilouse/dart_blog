@@ -7,11 +7,10 @@
                         <div class="col-md-9">
                             <div class="footer-menu">
                                 <ul>
-                                    <li class="active"><a href="#">Home</a></li>
-                                    <li><a href="#">lifestyle</a></li>
-                                    <li><a href="#">Food</a></li>
-                                    <li><a href="#">Nature</a></li>
-                                    <li><a href="#">photography</a></li>
+                                    <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                                    {% for i in categories %}
+                                    <li><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>

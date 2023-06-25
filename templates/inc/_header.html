@@ -8,10 +8,18 @@
             </div>
             <div class="col-md-10">
                 <div class="menu">
+                    {% comment %}
+                    Выделение активной вкладки категории синим прямоугольником 
+                    с использованием css class='active' и передачей текущего url 
+                    из объекта request.path c помощью контекстного процессора
+                    {% endcomment %}
                     <ul>
-                        <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                        <li {% if path == '/' %} class="active"{% endif %}>
+                            <a href="{% url 'home' %}">Home</a></li>
                         {% for i in categories %}
-                            <li><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></li>
+                            <li {% if i.get_absolute_url == path %}class="active"{% endif %}>
+                                <a href="{{ i.get_absolute_url }}">{{ i.title }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
