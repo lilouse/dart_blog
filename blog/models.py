@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from PIL import Image
 
 
 class Category(models.Model):
@@ -50,3 +51,16 @@ class Post(models.Model):
         verbose_name = 'статья'
         verbose_name_plural = 'статьи'
         ordering = ['-created_at']
+
+    def get_absolute_url(self):
+        return reverse('post_page', kwargs={"slug": self.slug})
+
+
+    # def save(self):
+    #     super().save()
+    #     img = Image.open(self.image.path)
+    #
+    #     if img.height > 50 or img.width > 50:
+    #         output_size = (50, 50)
+    #         img.thumbnail(output_size)
+    #         img.save(self.image.path)
